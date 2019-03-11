@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> Dropzone example</title>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="dropzone.js"></script>
+    <link rel="stylesheet" href="dropzone.css" type="text/css" />
+    <script type="text/javascript">
+       Dropzone.autoDiscover = false;
+        $(document).ready(function() {
+            $("#filezone").dropzone({
+                url: "IndexHandler.ashx?action=add",
+                addRemoveLinks: true,
+                method: 'post',
+                filesizeBase: 4096,
+                parallelUploads: 10,
+                uploadMultiple: true,
+                autoProcessQueue: true,
+                dictCancelUpload: '取消',
+                dictRemoveFile: '删除',
+                dictDefaultMessage:
+                '<span class="bigger-150 bolder"><i class="icon-caret-right red"></i> 拖动文件至该处</span><span class="smaller-80 grey">(或点击此处)</span> <br /><i class="upload-icon icon-cloud-upload blue icon-3x"></i>',
+                init: function () {
+                    // var submitButton = document.querySelector("#submit-all");
+                    myDropzone = this;
+                    //myDropzone.processQueue(); 
+                    //    myDropzone.on("complete", function (file) {
+                    //    myDropzone.removeFile(file);
+                    //});
+                    //this.on("complete",
+                    //    function (data) {
+                    //        var xhr = JSON.parse(data.xhr.response);
+                    //        filenames += xhr.filename + ",";
+                    //        $("#filenames").val(filenames.toString());
+
+                    //    });
+                    //this.on("removedfile",
+                    //    function (file) {
+                    //        var xhr = JSON.parse(file.xhr.response);
+                    //        //以上获取上传成功后的文件名
+                    //        delFile(xhr.filename);
+                    //        filenames = filenames.replace(xhr.filename + ",", "");
+                    //        //$("#filenames").val(filenames.toString());
+
+                    //    });
+
+                }
+
+            });
+            //删除文件
+        });
+        //Dropzone.options.addFiles = {
+        //    maxFileSize : 4,
+        //    parallelUploads : 10,
+        //    uploadMultiple: true,
+        //    autoProcessQueue : true,
+        //    addRemoveLinks : true,
+        //    init: function() {
+        //        var submitButton = document.querySelector("#submit-all");
+        //        myDropzone = this;
+        //        //submitButton.addEventListener("click", function() {
+        //        //    myDropzone.processQueue(); 
+        //        //});
+        //        //myDropzone.on("addedfile", function(file) {
+        //        //    if (!file.type.match(/image.*/)) {
+        //        //        if(file.type.match(/application.zip/)){
+        //        //            myDropzone.emit("thumbnail", file, "path/to/img");
+        //        //        } else {
+        //        //            myDropzone.emit("thumbnail", file, "path/to/img");
+        //        //        }
+        //        //    }
+        //        //});
+        //        myDropzone.on("complete", function(file) {
+        //            //myDropzone.removeFile(file);
+        //        });
+        //        this.on("removedfile",
+        //            function(file) { 
+        //                var xhr = JSON.parse(file.xhr.response);
+        //                alert(xhr);
+        //                //var filenewname = "";
+        //                //for (var i = 0; i < xhr.fileinfolist.length; i++)
+        //                //{
+        //                //    if (xhr.fileinfolist[i].fileName == file.name) {
+        //                //         filenewname = xhr.fileinfolist[i].fileNewName;
+        //                //    }
+        //                //}
+        //                //var filepath = xhr.fileRoot + "\\" + filenewname;
+        //                ////以上获取上传成功后的路径，然后在你自己的删除事件中进行处理
+        //                //delFile(filepath);
+
+
+        //            });
+        //    },
+        //};
+      
+        
+        function delFile(filename) {
+            $.post("IndexHandler.ashx",
+                {
+                    action: "delfile",
+                    filename: filename
+                },
+                "json");
+        }
+    </script>
+</head>
+<body>
+<!-- 第一种上传 -->        
+<!--<form id="addFiles" action="IndexHandler.ashx" class="dropzone" method="POST" enctype="multipart/form-data">
+</form>-->
+    <!--<input type="hidden" name="action" value="add" />-->
+    <!--<div class="fallback">
+        <input name="file" type="file" multiple />
+    </div>--> 
+    <div id="filezone" class="dropzone" style="width: 400px; height: 200px;"></div>
+    <input type="submit" value="Submit" id="submit-all"/>
+</body>
+</html>

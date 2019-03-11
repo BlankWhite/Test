@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="jquery-3.3.1.min.js">
+    </script>
+    <script>
+        //var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20%3D%202151330&format=json";
+        //$.getJSON(url,
+        //    function(data) {
+        //        //var city = data.query.results.channel.location.city;
+        //        //var forecast = data.query.results.channel.item.forecast;
+        //        //var result = {
+        //        //    city: city,
+        //        //    forecast: forecast
+        //        //};
+        //        //alert(JSON.stringify(result, null, '  '));
+        //        var o = JSON.parse(data,function(key, value) {
+        //            if (key === 'city') {
+        //                return value;
+        //            }
+        //            return value;
+        //        });
+        //        console.log(JSON.stringify(o));
+
+        //    });
+        var lenno = Object();
+        lenno.name = "john";
+        lenno.year = 1940;
+        lenno.living = false;
+        var paul = Object();
+        paul.name = "paul";
+        paul.year = "1944";
+        paul.living = false;
+        var beatles = {} ;
+        beatles.vocalist = lenno;
+        beatles.vocalist2 = paul;
+        console.log(beatles.vocalist.name);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
